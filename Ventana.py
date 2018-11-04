@@ -1,26 +1,33 @@
 # -*- coding: utf-8 -*-
-
 import pygame,sys
 from pygame.locals import *
-
-color = (0,140,60)
-colorDos = pygame.Color(255,120,9)
-
+#from ramdom import randint
+ 
 pygame.init()
-ventana = pygame.display.set_mode((400,300))
-pygame.display.set_caption("Hola")
+ventana = pygame.display.set_mode((800,600))
+pygame.display.set_caption("Game")
 
-#background_image = load_image('C:\Users\Acer  57AV\Documents\Universidad\AYPC\Proyeco AYPC\Imagenes\planilla.jpg')
+personaje = pygame.image.load("image/tontoarturo.png")
+posx= 0
+posy = 0
+velocidad = 6
+Blanco = (150,150,150)
+derecha = True
 
-while True:
-    ventana.fill(colorDos)
-    for evento in pygame.event.get():
-        if evento.type == QUIT:
+while True :
+    ventana.fill(Blanco)
+    ventana.blit(personaje,(posx,posy))
+    for event in pygame.event.get():
+        if event.type == QUIT:
             pygame.quit()
             sys.exit()
-#    screen.blit(background_image, (0, 0))        
+        elif event.type== pygame.KEYDOWN:
+            if event.key == K_LEFT:
+                posx-=velocidad
+            elif event.key == K_RIGHT:
+                posx+=velocidad
+            elif event.key == K_UP:
+                posy-=velocidad
+            elif event.key == K_DOWN:
+                posy+= velocidad
     pygame.display.update()
-    
-def load_image(filename, transparent=False):
-    image = image.convert()
-    try: image = pygame.image.load(filename)   
