@@ -1,24 +1,26 @@
 import pygame
+import sys
 
 
 #config
-screen_width = 800
-screen_height = 600
+screen_width = 600
+screen_height = 300
 pygame.init()
 
 screen = pygame.display.set_mode((screen_width,screen_height))
 
 #fondo
 BLANCO = (254,254,254)
+habitacion = pygame.image.load("image/habitacion1.jpg")
 
 #Sprites
 brainLeft = pygame.image.load("image/cerebro.png")
 brainRight = pygame.transform.flip(brainLeft, True, False)
 
 #posicion inicial y velocidad
-brainPosition = [0,0]
-speed = 2
-
+brainPosition = [35,35]
+speed = 0.5
+habitacion1Pos = [0,0]
 #funcion que garantiza que la accion se realizara en todo momento
 def game_loop():
     
@@ -31,7 +33,8 @@ def game_loop():
         #capturamos si el evento es de salida
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                exit()
+                pygame.quit()
+                sys.exit()
 
         #si no hay eventos de salida capturamos todas las teclas presionadas
         keys = pygame.key.get_pressed()
@@ -59,7 +62,7 @@ def game_loop():
 
 
         #Actualizamos el fondo
-        screen.fill(BLANCO) 
+        screen.blit(habitacion, habitacion1Pos) 
         
         #se dibuja el cerebro en su ubicación actual
         screen.blit(brainImg, brainPosition) 
