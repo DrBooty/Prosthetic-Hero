@@ -22,7 +22,8 @@ paredDown = pygame.Rect(64,536,736,64)
 
 brainLeft = pygame.image.load("image/cerebro.png")
 brainRight = pygame.transform.flip(brainLeft, True, False)
-
+pared = pygame.image.load("image/pared_Up.png")
+paredLateral = pygame.image.load("image/paredLado.png")
 #posicion inicial y velocidad
 x = 368
 y = 268
@@ -50,28 +51,14 @@ def game_loop():
                 
         pulsada = pygame.key.get_pressed()
         if pulsada[pygame.K_w]:
-            sprite1.rect.top -= 0.5
+            sprite1.rect.top -= 1
         if pulsada[pygame.K_s]:
-            sprite1.rect.top += 1/2
+            sprite1.rect.top += 1
         if pulsada[pygame.K_a]:
-            sprite1.rect.left -= 0.5
+            sprite1.rect.left -= 1
         if pulsada[pygame.K_d]:
-            sprite1.rect.left += 1/2
-        '''
-        if pulsada[pygame.K_w]:
-            sprite1.rect.top -= 0.5
-            
-        if pulsada[pygame.K_s]:
-            sprite1.rect.top += 0.5
-            print ("mover abajo")
-            
-        if pulsada[pygame.K_a]:
-            sprite1.rect.left -= 0.5
-            
-        if pulsada[pygame.K_d]:
-            sprite1.rect.left += 0.5
-            print ("mover derecha")
-          '''  
+            sprite1.rect.left += 1
+       
         if paredUp.colliderect(sprite1): 
             sprite1.rect.top = oldy
             
@@ -102,14 +89,18 @@ def game_loop():
         
         #screen.blit(habitacion, habitacion1Pos) 
         pygame.draw.rect(screen,BLACK,(0,0,800,600))
-        pygame.draw.rect(screen, BLANCO,paredUp)
-        pygame.draw.rect(screen, BLANCO,paredLeft)
-        pygame.draw.rect(screen, BLANCO,paredRight)
-        pygame.draw.rect(screen, BLANCO,paredDown)
+        #pygame.draw.rect(screen, BLANCO,paredUp)
+        #pygame.draw.rect(screen, BLANCO,paredLeft)
+        #pygame.draw.rect(screen, BLANCO,paredRight)
+        #pygame.draw.rect(screen, BLANCO,paredDown)
         
        
         #se dibuja el cerebro en su ubicación actual
         screen.blit(sprite1.image, sprite1.rect)
+        screen.blit(pared, (0,0))
+        screen.blit(pared, (0,536))
+        screen.blit(paredLateral, (0,0))
+        screen.blit(paredLateral, (736,0))
         
 
         #se actualiza el render en pantalla
