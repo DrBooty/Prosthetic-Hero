@@ -1,72 +1,97 @@
 import pygame
 import sys
 
-
 #config
-screen_width = 600
-screen_height = 300
+screen_width = 800
+screen_height = 600
 pygame.init()
 
 screen = pygame.display.set_mode((screen_width,screen_height))
 
 #fondo
 BLANCO = (254,254,254)
-habitacion = pygame.image.load("image/habitacion1.jpg")
+BLACK = (0,0,0)
+#habitacion = pygame.image.load("image/habitacion1.jpg")
+
+habitaciones = [
+    [
+        pygame.Rect(0,0,800,64),
+        pygame.Rect(0,64,64,536),
+        pygame.Rect(736,64,64,202),
+        pygame.Rect(736,334,64,202),
+        pygame.Rect(64,536,736,64)
+    ]
+]
 
 #Sprites
+
+
 brainLeft = pygame.image.load("image/cerebro.png")
 brainRight = pygame.transform.flip(brainLeft, True, False)
 
 #posicion inicial y velocidad
-brainPosition = [35,35]
-speed = 0.5
+x = 368
+y = 268
+brainImg = brainRight
+sprite1 = pygame.sprite.Sprite()
+sprite1.image = brainImg
+sprite1.rect = brainImg.get_rect()
+    
+sprite1.rect.top = y
+sprite1.rect.left = x
+
 habitacion1Pos = [0,0]
-#funcion que garantiza que la accion se realizara en todo momento
+
 def game_loop():
     
-    #inicializamos el sprite
-    brainImg = brainRight
-    
-    #ejecutamos el ciclo que recibira los eventos
     while True:
         
-        #capturamos si el evento es de salida
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
-        #si no hay eventos de salida capturamos todas las teclas presionadas
-        keys = pygame.key.get_pressed()
-
-        #dependiendo de la tecla presionada, se actualizarán las coordenadas de ubicacion del cerebro
-        #tambien se limita el espacio en que el sprite puede moverse
-        if keys[pygame.K_w]:
-            if brainPosition[1] > 0:
-                brainPosition[1] -= speed
+                
+        pulsada = pygame.key.get_pressed()
+        
+        if pulsada[pygame.K_w]:
+            sprite1.rect.top -= 1
             
-        if keys[pygame.K_s]:
-            if brainPosition[1] < 536:
-                brainPosition[1] += speed
+        if pulsada[pygame.K_s]:
+            sprite1.rect.top += 1
         
-        #en ocasiones especiales se requerira cambiar la orientacion del sprite
-        if keys[pygame.K_a]:
-            if brainPosition[0] > 0:
-                brainPosition[0] -= speed
-                brainImg = brainLeft
-        
-        if keys[pygame.K_d]:
-            if brainPosition[0] < 736:
-                brainPosition[0] += speed
-                brainImg = brainRight
+        if pulsada[pygame.K_a]:
+            sprite1.rect.left -= 1
+            sprite1.image = brainLeft
 
+        
+        if pulsada[pygame.K_d]:
+            sprite1.rect.right += 1
+            sprite1.image = brainRight
+
+
+
+        for pared in habitaciones[0]:
+            if pared.colliderect(sprite1): 
+                sprite1.rect.left = oldx                
+                sprite1.rect.top = oldy
+
+        
+        oldx = sprite1.rect.left
+        oldy = sprite1.rect.top
 
         #Actualizamos el fondo
-        screen.blit(habitacion, habitacion1Pos) 
         
-        #se dibuja el cerebro en su ubicación actual
-        screen.blit(brainImg, brainPosition) 
+        #screen.blit(habitacion, habitacion1Pos) 
+        pygame.draw.rect(screen,BLACK,(0,0,800,600))
 
+        for pared in habitaciones[0]:
+            pygame.draw.rect(screen, BLANCO, pared)
+
+        
+       
+        #se dibuja el cerebro en su ubicación actual
+        screen.blit(sprite1.image, sprite1.rect)
+        
         #se actualiza el render en pantalla
         pygame.display.update() 
 
