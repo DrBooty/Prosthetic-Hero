@@ -1,9 +1,9 @@
+# -*- coding: utf-8 -*-
 import pygame
 import sys
 import time
-from Mejora_piernas import *
+from Mejora_Brazos import * 
 
-#config
 screen_width = 800
 screen_height = 600
 pygame.init()
@@ -21,7 +21,6 @@ entradaDer = pygame.Rect(790,268,1,64)
 entradaIzq = pygame.Rect(10,268,1,64)
 entradaUp = pygame.Rect(368,10,64,1)
 entradaDown = pygame.Rect(368,590,64,1)
-
 
 habitaciones = [
     [
@@ -103,17 +102,18 @@ entradas = [
     ]
 ]
 
+
 #Sprites
 fondo = pygame.image.load("image/biblioteca.png")
 obj = pygame.Rect(650,250,65,65)
 puerta = pygame.Rect(368,268,65,65)
 
-brainLeft = pygame.image.load("image/cerebro.png")
+brainLeft = pygame.image.load("image/cerebro_piernas.png")
 brainRight = pygame.transform.flip(brainLeft, True, False)
-brainLeftp = pygame.image.load("image/cerebro_piernas.png")
+brainLeftp = pygame.image.load("image/cerebro_brazos.png")
 brainRightp = pygame.transform.flip(brainLeftp, True, False)
 
-mejoraPiernas = pygame.image.load("image/mejora_piernas.png")
+mejoraPiernas = pygame.image.load("image/mejora_brazos.png")
 #posicion inicial y velocidad
 x = 368
 y = 268
@@ -136,13 +136,13 @@ sprite2.rect.left = x
 #globales
 global piernas 
 piernas = False
-global habNum
-habNum = 0
+global habNum1
+habNum1 = 0
 
 
-def game_loop():
+def MejoraPiernas():
     global piernas 
-    global habNum
+    global habNum1
     entrada = 0
    
     while True:
@@ -155,33 +155,33 @@ def game_loop():
         pulsada = pygame.key.get_pressed()
         
         if pulsada[pygame.K_w]:
-            sprite2.rect.top -= 2
-            sprite1.rect.top -= 2
-            time.sleep(0.0007)
+            sprite2.rect.top -= 3
+            sprite1.rect.top -= 3
+            time.sleep(0.007)
             
         if pulsada[pygame.K_s]:
-            sprite2.rect.top += 2
-            sprite1.rect.top += 2
-            time.sleep(0.0007)
+            sprite2.rect.top += 3
+            sprite1.rect.top += 3
+            time.sleep(0.007)
         
         if pulsada[pygame.K_a]:
-            sprite2.rect.left -= 2
+            sprite2.rect.left -= 3
             sprite2.image = brainLeftp
-            sprite1.rect.left -= 2
+            sprite1.rect.left -= 3
             sprite1.image = brainLeft
-            time.sleep(0.0007)
+            time.sleep(0.007)
 
         
         if pulsada[pygame.K_d]:
-            sprite2.rect.right += 2
+            sprite2.rect.right += 3
             sprite2.image = brainRightp
-            sprite1.rect.right += 2
+            sprite1.rect.right += 3
             sprite1.image = brainRight
-            time.sleep(0.0007)
+            time.sleep(0.007)
 
 
 
-        for pared in habitaciones[habNum]:
+        for pared in habitaciones[habNum1]:
             if pared.colliderect(sprite1) or pared.colliderect(sprite2): 
                 sprite1.rect.left = oldx                
                 sprite1.rect.top = oldy
@@ -190,73 +190,73 @@ def game_loop():
                 
         
             
-        if habNum == 0:
+        if habNum1 == 0:
             
             if entradaDer.colliderect(sprite1) or entradaDer.colliderect(sprite2):            
-                habNum = 1
+                habNum1 = 1
                 sprite1.rect.top = 268
                 sprite1.rect.left = 30
                 sprite2.rect.top = 268
                 sprite2.rect.left = 30
                 
-        if habNum == 1:
+        if habNum1 == 1:
                
             if entradaIzq.colliderect(sprite1) or entradaIzq.colliderect(sprite2):
-                habNum = 0
+                habNum1 = 0
                 sprite1.rect.top = 268
                 sprite1.rect.left = 700
                 sprite2.rect.top = 268
                 sprite2.rect.left = 700
                
-        if habNum == 1:
+        if habNum1 == 1:
             
             if entradaDer.colliderect(sprite1) or entradaDer2.colliderect(sprite2):
-                habNum = 2
+                habNum1 = 2
                 sprite1.rect.top = 268
                 sprite1.rect.left = 30
                 sprite2.rect.top = 268
                 sprite2.rect.left = 30
                 
-        if habNum == 2: 
+        if habNum1 == 2: 
             
             if entradaIzq.colliderect(sprite1) or entradaIzq2.colliderect(sprite2):
-                habNum = 1
+                habNum1 = 1
                 sprite1.rect.top = 268
                 sprite1.rect.left = 700
                 sprite2.rect.top = 268
                 sprite2.rect.left = 700
                 
-        if habNum == 1: 
+        if habNum1 == 1: 
             
             if entradaUp.colliderect(sprite1) or entradaUp.colliderect(sprite2):
-                habNum = 4
+                habNum1 = 4
                 sprite1.rect.top = 500
                 sprite1.rect.left = 368
                 sprite2.rect.top = 500
                 sprite2.rect.left = 368
         
-        if habNum == 4: 
+        if habNum1 == 4: 
             
             if entradaDown.colliderect(sprite1) or entradaDown.colliderect(sprite2):
-                habNum = 1
+                habNum1 = 1
                 sprite1.rect.top = 30
                 sprite1.rect.left = 368
                 sprite2.rect.top = 30
                 sprite2.rect.left = 368
                 
-        if habNum == 1: 
+        if habNum1 == 1: 
             
             if entradaDown.colliderect(sprite1) or entradaDown.colliderect(sprite2):
-                habNum = 3
+                habNum1 = 3
                 sprite1.rect.top = 30
                 sprite1.rect.left = 368
                 sprite2.rect.top = 30
                 sprite2.rect.left = 368
                 
-        if habNum == 3: 
+        if habNum1 == 3: 
             
             if entradaUp.colliderect(sprite1) or entradaUp2.colliderect(sprite2):
-                habNum = 1
+                habNum1 = 1
                 sprite1.rect.top = 500
                 sprite1.rect.left = 368
                 sprite2.rect.top = 500
@@ -276,20 +276,20 @@ def game_loop():
         
         screen.blit(fondo , (0,0))
         
-        for pared in entradas[habNum]:
+        for pared in entradas[habNum1]:
             pygame.draw.rect(screen, BLACK, pared)
         
-        if habNum == 2 :
+        if habNum1 ==  3:
             if (piernas == False):
                 screen.blit(mejoraPiernas, (650,250))                        
             if obj.colliderect(sprite1):                
                 entrada = 1
                 piernas = True
             if entrada == 1:
-                if habNum == 2:                                       
+                if habNum1 == 3:                                       
                     pygame.draw.rect(screen , ColorPuerta, puerta)
                     if puerta.colliderect(sprite1):
-                        MejoraPiernas()
+                        MejoraBrazos()
             
         
             
@@ -306,4 +306,4 @@ def game_loop():
         pygame.display.update() 
         
 
-#game_loop()
+
