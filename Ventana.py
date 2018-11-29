@@ -16,13 +16,10 @@ BLANCO = (254,254,254)
 BLACK = (0,0,0)
 COLOR = (150,0,0)
 ColorPuerta = (150,0,150)
-<<<<<<< HEAD
 Blue = (0,0,250)
 Rojo = (250,0,0)
 Amarillo = (255,255,0)
 Verde = (127,255,0)
-=======
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
 
 #Entrada Habitacion 
 entradaDer = pygame.Rect(790,268,1,64)
@@ -110,7 +107,6 @@ entradas = [
      
     ]
 ]
-<<<<<<< HEAD
     
     
 #Puzzle
@@ -118,17 +114,12 @@ placaAzul = pygame.Rect(150,150,50,50)
 placaRoja = pygame.Rect(150,430,50,50)
 placaAmarillo = pygame.Rect(650,150,50,50)
 placaVerde = pygame.Rect(650,430,50,50)
-=======
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
 
 #Sprites
 fondo = pygame.image.load("image/biblioteca.png")
 obj = pygame.Rect(650,250,65,65)
 puerta = pygame.Rect(368,268,65,65)
-<<<<<<< HEAD
 mensaje = pygame.image.load("image/mensaje.png")
-=======
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
 
 brainLeft = pygame.image.load("image/cerebro.png")
 brainRight = pygame.transform.flip(brainLeft, True, False)
@@ -160,17 +151,11 @@ global piernas
 piernas = False
 global habNum
 habNum = 0
-<<<<<<< HEAD
 global activarMejora
 activarMejora = 0
 
 def game_loop():
     global activarMejora
-=======
-
-
-def game_loop():
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
     global piernas 
     global habNum
     entrada = 0
@@ -240,11 +225,7 @@ def game_loop():
                
         if habNum == 1:
             
-<<<<<<< HEAD
             if entradaDer.colliderect(sprite1) or entradaDer.colliderect(sprite2):
-=======
-            if entradaDer.colliderect(sprite1) or entradaDer2.colliderect(sprite2):
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
                 habNum = 2
                 sprite1.rect.top = 268
                 sprite1.rect.left = 30
@@ -253,11 +234,7 @@ def game_loop():
                 
         if habNum == 2: 
             
-<<<<<<< HEAD
             if entradaIzq.colliderect(sprite1) or entradaIzq.colliderect(sprite2):
-=======
-            if entradaIzq.colliderect(sprite1) or entradaIzq2.colliderect(sprite2):
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
                 habNum = 1
                 sprite1.rect.top = 268
                 sprite1.rect.left = 700
@@ -293,11 +270,7 @@ def game_loop():
                 
         if habNum == 3: 
             
-<<<<<<< HEAD
             if entradaUp.colliderect(sprite1) or entradaUp.colliderect(sprite2):
-=======
-            if entradaUp.colliderect(sprite1) or entradaUp2.colliderect(sprite2):
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
                 habNum = 1
                 sprite1.rect.top = 500
                 sprite1.rect.left = 368
@@ -321,7 +294,6 @@ def game_loop():
         for pared in entradas[habNum]:
             pygame.draw.rect(screen, BLACK, pared)
         
-<<<<<<< HEAD
         
             
         
@@ -330,10 +302,6 @@ def game_loop():
         
         if habNum == 2 :            
             if (piernas == False):                
-=======
-        if habNum == 2 :
-            if (piernas == False):
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
                 screen.blit(mejoraPiernas, (650,250))                        
             if obj.colliderect(sprite1):                
                 entrada = 1
@@ -356,12 +324,4 @@ def game_loop():
             screen.blit(sprite2.image, sprite2.rect)
         
         #se actualiza el render en pantalla
-        pygame.display.update() 
-        
-<<<<<<< HEAD
-
-
-=======
-
-#game_loop()
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
+        pygame.display.update()

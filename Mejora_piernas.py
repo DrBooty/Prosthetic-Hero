@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -- coding: utf-8 --
 import pygame
 import sys
 import time
@@ -9,10 +9,7 @@ screen_height = 600
 pygame.init()
 
 screen = pygame.display.set_mode((screen_width,screen_height))
-<<<<<<< HEAD
 pygame.display.set_caption("Prostetic Hero")
-=======
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
 
 #fondo
 BLANCO = (254,254,254)
@@ -117,11 +114,7 @@ brainRight = pygame.transform.flip(brainLeft, True, False)
 brainLeftp = pygame.image.load("image/cerebro_brazos.png")
 brainRightp = pygame.transform.flip(brainLeftp, True, False)
 
-<<<<<<< HEAD
 mejoraBrazos = pygame.image.load("image/mejora_brazos.png")
-=======
-mejoraPiernas = pygame.image.load("image/mejora_brazos.png")
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
 #posicion inicial y velocidad
 x = 368
 y = 268
@@ -218,11 +211,7 @@ def MejoraPiernas():
                
         if habNum1 == 1:
             
-<<<<<<< HEAD
             if entradaDer.colliderect(sprite1) or entradaDer.colliderect(sprite2):
-=======
-            if entradaDer.colliderect(sprite1) or entradaDer2.colliderect(sprite2):
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
                 habNum1 = 2
                 sprite1.rect.top = 268
                 sprite1.rect.left = 30
@@ -231,11 +220,7 @@ def MejoraPiernas():
                 
         if habNum1 == 2: 
             
-<<<<<<< HEAD
             if entradaIzq.colliderect(sprite1) or entradaIzq.colliderect(sprite2):
-=======
-            if entradaIzq.colliderect(sprite1) or entradaIzq2.colliderect(sprite2):
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
                 habNum1 = 1
                 sprite1.rect.top = 268
                 sprite1.rect.left = 700
@@ -271,11 +256,7 @@ def MejoraPiernas():
                 
         if habNum1 == 3: 
             
-<<<<<<< HEAD
             if entradaUp.colliderect(sprite1) or entradaUp.colliderect(sprite2):
-=======
-            if entradaUp.colliderect(sprite1) or entradaUp2.colliderect(sprite2):
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
                 habNum1 = 1
                 sprite1.rect.top = 500
                 sprite1.rect.left = 368
@@ -301,11 +282,7 @@ def MejoraPiernas():
         
         if habNum1 ==  3:
             if (piernas == False):
-<<<<<<< HEAD
                 screen.blit(mejoraBrazos, (650,250))                        
-=======
-                screen.blit(mejoraPiernas, (650,250))                        
->>>>>>> 5712e523ac874274f743c7ba416e2c16dbbfb47c
             if obj.colliderect(sprite1):                
                 entrada = 1
                 piernas = True
@@ -327,7 +304,4 @@ def MejoraPiernas():
             screen.blit(sprite2.image, sprite2.rect)
         
         #se actualiza el render en pantalla
-        pygame.display.update() 
-        
-
-
+        pygame.display.update()
